@@ -29,6 +29,15 @@ spec:
         heritage: "Tiller"
         role: slave
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: read-or-write
+                operator: In
+                values:
+                - read
       securityContext:
         fsGroup: 1001
         runAsUser: 1001
